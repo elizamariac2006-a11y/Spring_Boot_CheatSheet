@@ -1,5 +1,6 @@
-package com.luv2code.springcoredome;
+package com.luv2code.springcoredome.rest;
 
+import com.luv2code.springcoredome.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,14 @@ public class DemoController {
     private Coach myCoach;
 
     //define a constructor for dependency injection
+//    @Autowired
+//    public DemoController(Coach theCoach) {
+//        this.myCoach = theCoach;
+//    }
+
+    //define a setter for dependency injection
     @Autowired
-    public DemoController(Coach theCoach) {
+    public void setCoach(Coach theCoach) {
         this.myCoach = theCoach;
     }
 
