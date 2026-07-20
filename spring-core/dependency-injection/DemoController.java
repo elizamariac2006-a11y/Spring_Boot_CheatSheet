@@ -13,8 +13,10 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public DemoController(Coach theCoach) {
-        //used @Primary on tennisCoach, so this will be the one used 
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+        //used @Primary on tennisCoach, but this will be the one used if i dont use @Qualifier
+        //if i use @Qualifier, it has HIGHER priority than @Priority, so here cricketCoach will be used
+        //@Qualifier > @priority
         this.myCoach = theCoach;
      }
 
