@@ -12,14 +12,11 @@ public class DemoController {
     //define a private field for the dependency
     private Coach myCoach;
 
-//    define a constructor for dependency injection
     @Autowired
-    public DemoController(@Qualifier("tennisCoach") Coach theCoach) {
-        //we used @Qualifier to tell Spring which implementation we want
-        //(Spring has 4 Beans from the Coach interface)
-        //We use the BEAN ID - NAME OF THE CLASS WITH THE FIRST LETTER LOWER
+    public DemoController(Coach theCoach) {
+        //used @Primary on tennisCoach, so this will be the one used 
         this.myCoach = theCoach;
-    }
+     }
 
     //define a setter for dependency injection
 //    @Autowired
