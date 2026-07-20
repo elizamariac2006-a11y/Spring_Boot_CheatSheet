@@ -11,23 +11,27 @@ public class DemoController {
 
     //define a private field for the dependency
     private Coach myCoach;
+    private Coach anotherCoach;
 
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
-        //used @Primary on tennisCoach, but this will be the one used if i dont use @Qualifier
-        //if i use @Qualifier, it has HIGHER priority than @Priority, so here cricketCoach will be used
-        //@Qualifier > @priority
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                          @Qualifier("cricketCoach") Coach theAnotherCoach) {
+        System.out.println("In constructor : " + getClass().getSimpleName());
         this.myCoach = theCoach;
+        this.anotherCoach = theAnotherCoach;
      }
-
-    //define a setter for dependency injection
-//    @Autowired
-//    public void setCoach(Coach theCoach) {
-//        this.myCoach = theCoach;
-//    }
 
     @GetMapping("/daily-workout")
     public String getDailyWorkout() {
          return this.myCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/check")
+    public String compareCoachBeans() {
+        if(this.myCoach == this.anotherCoach) {
+            return "Same Bean!!";
+        } else {
+            return "Different Beans!!";
+        }
     }
 }
